@@ -8,8 +8,39 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.viewpager2.MainFragment"
+        android:name="com.example.viewpager2.MainFragment">
+
+        <action
+            android:id="@+id/action_Main_to_Details"
+            app:destination="@id/details_fragment">
+        <argument
+            android:name="myArg"
+            app:argType="integer"
+            android:defaultValue="1" />
+
+        </action>
+            />
+
+            <!--app:popUpTo="@+id/Splash"
+            app:popUpToInclusive="true"-->
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/details_fragment"
+        android:name="com.example.viewpager2.DetailsFragment">
+        <argument
+            android:name="myArg"
+            app:argType="integer"
+            android:defaultValue="0">
+        </argument>
+    <action
+        android:id="@+id/action_Detail_to_Main"
+        app:destination="@id/details_fragment">
+
+    </action>
         />
+    </fragment>
 
 
 </navigation>
