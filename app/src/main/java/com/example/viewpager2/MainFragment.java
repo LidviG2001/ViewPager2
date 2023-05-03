@@ -1,5 +1,8 @@
 package com.example.viewpager2;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,6 +19,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.viewpager2.ViewModel.MainViewModel;
@@ -43,12 +47,14 @@ public class MainFragment extends Fragment {
 
     private List<ItemList> itemList;
 
+    private SearchView searchView;
+
     private SharedViewModel sharedViewModel;
 
     private MainViewModel viewModel;
 
-    private String API_KEY = "AIzaSyAZYCA4ZS6eA0G6PKYVgAXsMM0fncTt-Jk";
-    private String CHANNEL_ID = "top+in+ukraine";
+    private String API_KEY = "Your_API_Key"; // set your API KEY
+    private String CHANNEL_ID = "top in ukraine";
     private String ORDER = "viewCount";
     private String PART = "snippet";
     private String PARTS = "snippet,statistics";
@@ -57,6 +63,8 @@ public class MainFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        searchView = view.findViewById(R.id.searchView);
 
         viewPager2 = view.findViewById(R.id.viewpager);
         numbersList = view.findViewById(R.id.rv_recomended);
@@ -67,6 +75,26 @@ public class MainFragment extends Fragment {
         observeViewModel();
 
         viewModel.getVideoDetails(PART, PARTS, CHANNEL_ID, API_KEY, ORDER, TYPE);
+
+        searchView.setQueryHint("Search");
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                String CHANNEL_ID = newText;
+                if(CHANNEL_ID.length() > 3){
+                    viewModel.getVideoDetails(PART, PARTS, CHANNEL_ID, API_KEY, ORDER, TYPE);
+                }
+                return false;
+            }
+        });
+
+
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         numbersList.setLayoutManager(layoutManager);

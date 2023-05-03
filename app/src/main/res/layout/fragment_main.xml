@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:fontFamily="@font/montserrat">
+    android:fontFamily="@font/montserrat"
+    >
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainFragment"
     android:background="#1C2230"
     android:orientation="vertical"
     android:paddingLeft="15dp"
-    android:paddingRight="15dp">
+    android:paddingRight="15dp"
+    >
 
-    <TextView
+    <SearchView
+        android:id="@+id/searchView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Top 5 videos in Ukraine"
-        android:textColor="@color/white"
-        android:textSize="24sp"
+        android:layout_height="match_parent"
+        android:background="@drawable/values"
+        android:searchIcon="@drawable/ic_baseline_search_24"
+        android:searchHintIcon="@drawable/ic_baseline_search_24"
         />
 
     <androidx.viewpager2.widget.ViewPager2

@@ -1,6 +1,7 @@
 package com.example.viewpager2;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
 
     private SharedViewModel sharedViewModel;
 
-
     private ViewPager2 viewPager2;
     private RecyclerView numbersList;
     private RecyclerView2 recyclerView2;
@@ -25,8 +25,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-       // SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
 
         sharedViewModel = new ViewModelProvider(this).get(SharedViewModel.class);
 
